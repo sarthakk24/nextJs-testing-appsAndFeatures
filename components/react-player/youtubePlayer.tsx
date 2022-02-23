@@ -7,6 +7,7 @@ const YoutubePlayer = () => {
         <ReactPlayer
           url="https://www.youtube.com/watch?v=43HCYSXZ9GI"
           controls={true}
+          light={true}
         />
       </div>
     </>

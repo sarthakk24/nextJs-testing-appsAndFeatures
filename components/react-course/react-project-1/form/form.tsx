@@ -15,6 +15,8 @@ const Form = ({ addFnc }: { addFnc: Function }) => {
 
   const onSubmitHandler = (event: any) => {
     event.preventDefault();
+
+    if (name === "" || age === 0) return;
     addFnc(name, age);
   };
 

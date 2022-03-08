@@ -1,23 +1,27 @@
 import Button from "../UI/button";
 import { useState } from "react";
 
-const Form = ({ addFnc }: { addFnc: Function }) => {
+const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
   const [name, updateName] = useState("");
-  const [age, updateAge] = useState(0);
+  const [age, updateAge] = useState("");
 
   const nameChangeHandler = (event: any) => {
     updateName(event.target.value);
   };
 
   const ageChangeHandler = (event: any) => {
-    updateAge(+event.target.value);
+    updateAge(event.target.value);
   };
 
   const onSubmitHandler = (event: any) => {
     event.preventDefault();
-
-    if (name === "" || age === 0) return;
-    addFnc(name, age);
+    if (name === "" || age === "") {
+      console.log("error");
+      return;
+    }
+    addFnc(name, +age);
+    updateAge("");
+    updateName("");
   };
 
   return (
@@ -25,19 +29,28 @@ const Form = ({ addFnc }: { addFnc: Function }) => {
       <div className="bg-[#FEFFFE] text-black p-10 mt-5 rounded-lg">
         <form onSubmit={onSubmitHandler}>
           <div>
-            <h1 className="font-bold">Username</h1>
+            <label htmlFor="name" className="font-bold">
+              Username
+            </label>
+            <br />
             <input
               type="text"
+              id="name"
               className="border-2 w-[600px] mt-1"
               onChange={nameChangeHandler}
+              value={name}
             ></input>
           </div>
           <div>
-            <h1 className="font-bold">Age (years)</h1>
+            <label htmlFor="name" className="font-bold">
+              Age (years)
+            </label>
+            <br />
             <input
               type="number"
               className="border-2 w-[600px] mt-1"
               onChange={ageChangeHandler}
+              value={age}
             ></input>
           </div>
           <Button name="Add User" />

@@ -1,10 +1,15 @@
 import Button from "../UI/button";
 import { useState } from "react";
+import ErrorModal from "../UI/ErrorModal";
 
 const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
   const [name, updateName] = useState("");
   const [age, updateAge] = useState("");
-
+  const [errorState, updateErrorState] = useState({
+    state: false,
+    heading: "ErrorHeading",
+    content: "ErrorContent",
+  });
   const nameChangeHandler = (event: any) => {
     updateName(event.target.value);
   };
@@ -15,8 +20,21 @@ const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
 
   const onSubmitHandler = (event: any) => {
     event.preventDefault();
-    if (name === "" || age === "") {
-      console.log("error");
+    if (name === "") {
+      updateErrorState({
+        state: true,
+        heading: "Invalid input",
+        content: "Please enter a valid name",
+      });
+      return;
+    }
+
+    if (+age <= 0) {
+      updateErrorState({
+        state: true,
+        heading: "Invalid input",
+        content: "Please enter a valid age (> 0)",
+      });
       return;
     }
     addFnc(name, +age);
@@ -24,8 +42,18 @@ const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
     updateName("");
   };
 
+  const modalClickHandler = () => {
+    updateErrorState({ state: false, content: "", heading: "" });
+  };
+
   return (
     <>
+      <ErrorModal
+        heading={errorState.heading}
+        content={errorState.content}
+        state={errorState.state}
+        fnc={modalClickHandler}
+      />
       <div className="bg-[#FEFFFE] text-black p-10 mt-5 rounded-lg">
         <form onSubmit={onSubmitHandler}>
           <div>

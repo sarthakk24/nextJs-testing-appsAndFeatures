@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Form from "../users/form";
-import { UserType } from "../interface";
+import { UserType } from "../helpers/interface";
 import UsersList from "../users/usersList";
 import Wrapper from "../helpers/Wrapper";
 

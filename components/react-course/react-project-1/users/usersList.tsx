@@ -1,4 +1,4 @@
-import { UserType } from "../interface";
+import { UserType } from "../helpers/interface";
 import NewUser from "./newUser";
 
 interface UserTypes {

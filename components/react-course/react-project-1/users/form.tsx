@@ -36,7 +36,7 @@ const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
             <input
               type="text"
               id="name"
-              className="border-2 w-[600px] mt-1"
+              className="border-2 w-[600px] mt-1 pl-3"
               onChange={nameChangeHandler}
               value={name}
             ></input>
@@ -48,7 +48,7 @@ const Form = ({ addFnc }: { addFnc: Function }): JSX.Element => {
             <br />
             <input
               type="number"
-              className="border-2 w-[600px] mt-1"
+              className="border-2 w-[600px] mt-1 pl-3"
               onChange={ageChangeHandler}
               value={age}
             ></input>
